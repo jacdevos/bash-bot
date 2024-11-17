@@ -13,7 +13,7 @@ fi
 # Check if --new flag was provided
 if [ "$1" = "--new" ]; then
     ./src/new.sh
-    echo "New chat Ready!"
+    echo "New chat ready!"
     exit 0
 fi
 
@@ -26,15 +26,14 @@ fi
 current_date=$(date '+%y-%m-%d %H:%M:%S')
 
 # Create new user input from command line arguments
-lastuserinputfile="context/${current_date}-user"
+lastuserinputfile="context/${current_date}-input"
 > $lastuserinputfile
 echo "$@" >> $lastuserinputfile
 
 # Generate context string from all files
 ./src/contexttostring.sh
 
-# cat chatcontext newprompt > tempin
-# ollama run Llama3.1-noheat < tempin --nowordwrap > lastreponse
-# rm tempin
-# cat chatcontext lastreponse > tempout
-# mv tempout chatcontext
+lastresponsefile="context/${current_date}-response"
+> $lastresponsefile
+ollama run Llama3.1-noheat < tempchatcontext --nowordwrap > $lastresponsefile
+cat "$lastresponsefile"

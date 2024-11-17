@@ -1,6 +1,7 @@
 # Ignore context and history folders
 context/*
 history/*
+tempchatcontext
 
 # But keep the folders themselves
 !context/.gitkeep

@@ -8,7 +8,6 @@ if [ -d "context" ] && [ $(ls -1 context | wc -l) -gt 1 ]; then
     if [ ! -z "$date_str" ]; then
         # Create new folder in history with the ISO date
         mkdir -p "history/$date_str"
-        
         # Move all files from current-chat to the new history folder
         mv context/* "history/$date_str/"
     fi
